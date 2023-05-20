@@ -1,7 +1,11 @@
 ---
+Parameters:
+  SecurityGroupDescription:
+    Description: Security Group Description
+    Type: String
 
 Resources:
-  DemInstance:
+  MyInstance:
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: us-east-1a
@@ -9,12 +13,13 @@ Resources:
       InstanceType: t2.micro
       SecurityGroups:
         - !Ref SSHSecurityGroup
+        - !Ref ServerSecurityGroup
 
   # an elastic IP for our instance
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
-      InstanceId: !Ref DemInstance
+      InstanceId: !Ref MyInstance
 
   # our EC2 security group
   SSHSecurityGroup:
@@ -27,8 +32,17 @@ Resources:
         IpProtocol: tcp
         ToPort: 22
 
-
-Outputs:
-  ElasticIP:
-    Description: Elastic IP Value
-    Value: !Ref MyEIP
+  # our second EC2 security group
+  ServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Ref SecurityGroupDescription
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 192.168.1.1/32

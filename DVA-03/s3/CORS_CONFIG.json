@@ -7,7 +7,7 @@
             "GET"
         ],
         "AllowedOrigins": [
-            "http://s3-encryption-my.s3-website.eu-south-1.amazonaws.com"
+            "<url of first bucket with http://...without slash at the end>"
         ],
         "ExposeHeaders": [],
         "MaxAgeSeconds": 3000

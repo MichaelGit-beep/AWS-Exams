@@ -1,20 +1,18 @@
 <html>
     <head>
-        <title>My First Webpage</title>
+        <title>CORS Demo API Gateway</title>
     </head>
     <body>
-        <h1>I love coffee</h1>
-        <p>Hello world!</p>
+        <h1>Making a CORS request to API Gateway...</h1>
+        <div id="tofetch"/>
     </body>
 
-    <img src="coffee.jpg" width=500/>
 
     <!-- CORS demo -->
-    <div id="tofetch"/>
     <script>
         var tofetch = document.getElementById("tofetch");
 
-        fetch('https://demo-other-origin-michael-1.s3.eu-north-1.amazonaws.com/extra-page.html')
+        fetch('https://kfz6b0ty9i.execute-api.eu-west-2.amazonaws.com/prod/houses')
         .then((response) => { 
             return response.text();
         })
