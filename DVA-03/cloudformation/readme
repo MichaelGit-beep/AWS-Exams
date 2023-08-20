@@ -1,0 +1,5 @@
+aws cloudformation create-stack --stack-name sasccs1 --template-body file://0-just-ec2.yaml --parameters ParameterKey=SecurityGroupDescription,ParameterValue=DSC
+aws cloudformation create-stack --stack-name sasccs1 --template-body file://1-ec2-with-sg-eip.yaml --parameters ParameterKey=SecurityGroupDescription,ParameterValue=DSC
+aws cloudformation list-stacks
+aws cloudformation describe-stacks --stack-name sasccs1
+aws cloudformation delete-stack --stack-name sasccs1
